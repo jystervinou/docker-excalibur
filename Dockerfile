@@ -5,6 +5,7 @@ RUN /usr/sbin/useradd --create-home --shell /bin/bash --user-group python
 ARG DEBIAN_FRONTEND=noninteractive
 RUN /usr/bin/apt-get update \
  && /usr/bin/apt-get install --assume-yes vim \
+ && /usr/bin/apt-get install --assume-yes git \
  && /usr/bin/apt-get install --assume-yes ghostscript \
  && rm -rf /var/lib/apt/lists/*
 
