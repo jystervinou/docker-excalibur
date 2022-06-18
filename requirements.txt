@@ -40,7 +40,8 @@ cryptography==36.0.2
     # via pdfminer-six
 et-xmlfile==1.1.0
     # via openpyxl
-excalibur-py==0.4.3
+#excalibur-py==0.4.3
+git+https://github.com/jystervinou/excalibur@master#egg=excalibur-py
     # via -r requirements.in
 flask==1.1.4
     # via excalibur-py
