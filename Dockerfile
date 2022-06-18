@@ -4,8 +4,12 @@ RUN /usr/sbin/useradd --create-home --shell /bin/bash --user-group python
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN /usr/bin/apt-get update \
+ && /usr/bin/apt-get install --assume-yes vim \
  && /usr/bin/apt-get install --assume-yes ghostscript \
  && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y python3-opencv
+RUN pip install opencv-python
 
 USER python
 RUN /usr/local/bin/python -m venv /home/python/venv
@@ -16,7 +20,8 @@ RUN /home/python/venv/bin/pip install --no-cache-dir --requirement /home/python/
 ENV EXCALIBUR_HOME="/home/python/excalibur" \
     PATH="/home/python/venv/bin:${PATH}" \
     PYTHONDONTWRITEBYTECODE="1" \
-    PYTHONUNBUFFERED="1"
+    PYTHONUNBUFFERED="1" \
+    PYTHON_DEPS="MarkupSafe==2.0.1  example==1.1.9"
 
 ENTRYPOINT ["/home/python/venv/bin/python"]
 CMD ["/home/python/docker-excalibur/run.py"]
